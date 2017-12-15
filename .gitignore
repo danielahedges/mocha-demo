@@ -1,0 +1,13 @@
+logs
+*.log
+npm-debug.log*
+node_modules
+
+# Mac OS X
+.DS_Store
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
