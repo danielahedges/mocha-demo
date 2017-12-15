@@ -4,7 +4,21 @@
   "description": "Demonstration of mocha on a relatively large architecture",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./src/**/*.spec.js"
+    "test": "npx mocha ./build/**/*.spec.js",
+    "build": "npx babel ./src -s --copy-files --out-dir ./build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-eslint": "8.0.3",
+    "babel-loader": "7.1.2",
+    "babel-plugin-syntax-decorators": "6.13.0",
+    "babel-plugin-transform-decorators-legacy": "1.3.4",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-stage-2": "6.24.1",
+    "chai": "4.1.2",
+    "mocha": "4.0.1"
   },
   "repository": {
     "type": "git",
