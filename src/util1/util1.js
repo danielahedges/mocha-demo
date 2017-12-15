@@ -4,14 +4,15 @@ export function foo(mustBeTrue) {
 	if (!mustBeTrue) {
 		throw new Error('foo mustBeTrue is falsy');
 	}
+	console.log('returning true');
 	return true;
 }
 
 export function fooAsync(mustBeTrue) {
-	return Promise.resolves(true).then(() => {
+	return Promise.resolve(true).then(() => {
 		if (!mustBeTrue) {
 			throw new Error('fooAsync mustBeTrue is falsy');
 		}
-		return true;
+		return foo(mustBeTrue);
 	});
 }
