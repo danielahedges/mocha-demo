@@ -4,7 +4,7 @@
   "description": "Demonstration of mocha on a relatively large architecture",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha ./build/**/*.spec.js",
+    "test": "npm run build && npx mocha ./build/**/*.spec.js",
     "build": "npx babel ./src -s --copy-files --out-dir ./build"
   },
   "dependencies": {},
