@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run build && npx mocha ./build/**/*.spec.js",
-    "build": "npx babel ./src -s --copy-files --out-dir ./build"
+    "build": "rm -r ./build && npx babel ./src -s --copy-files --out-dir ./build"
   },
   "dependencies": {},
   "devDependencies": {

@@ -1,10 +1,15 @@
 /* eslint-env mocha */
 
-import { expect } from 'chai';
-import ServiceClass from '../service-class';
+// The same tests as service-class.spec.js, except we load ServiceClass with
+// a require instead of import.
 
-describe('service-class', () => {
+import { expect } from 'chai';
+
+describe('service-class.require', () => {
+	var ServiceClass;
+
 	before(() => {
+		ServiceClass = require('../service-class').default;
 	});
 
 	after(() => {});
