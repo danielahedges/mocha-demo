@@ -16,29 +16,27 @@ describe('service-class.spy', () => {
 
 		// dependency:
 		util1 = require('../../util1/util1');
+		sinon.spy(util1, 'foo');
 	});
 
-	after(() => {});
+	after(() => {
+		util1.foo.restore();
+	});
 
 	beforeEach(() => {
 		sc = new ServiceClass(true);
-		sinon.spy(util1, 'foo');
+		util1.foo.reset();
 	});
 
 	afterEach(() => {
 		sc = null;
-		util1.foo.restore();
 	});
 
-	it('syncService returns true', () => {
-		expect(new ServiceClass(true).syncService()).to.be.true;
+	it('spy counter starts at zero', () => {
+		expect(util1.foo.calledOnce).to.be.false;
+		expect(util1.foo.callCount).to.equal(0);
 	});
 
-	// it('spy counter resets to zero', () => {
-	// 	expect(util1.foo.calledOnce).to.be.false;
-	// 	expect(util1.foo.calls).to.equal(0);
-	// });
-  
 	it('asyncService returns promise of true', (done) => {
 		var sc = new ServiceClass(true);
 		sc.asyncService().then(value => {
@@ -52,21 +50,27 @@ describe('service-class.spy', () => {
 		expect(util1.foo.calledOnce).to.be.true;
 	});
 
+	it('spy counter resets to zero', () => {
+		expect(util1.foo.calledOnce).to.be.false;
+		expect(util1.foo.callCount).to.equal(0);
+	});
+
 	it('callFoo throws exception on falsy parameter', () => {
 		// This means the actual util1 was loaded and called.
 		// A stub would not throw.
 		expect(() => sc.callFoo(false)).to.throw;
 	});
 
-	// it('callFooAsync calls foo once', (done) => {
-	// 	sc.callFooAsync(true).then((val) => {
-	// 		expect(util1.foo.calledOnce).to.be.true;
-	// 		expect(val).to.be.true;
-	// 		done();
-	// 	}).catch((err) => {
-	// 		console.log('wtf are we doing here?');
-	// 		console.log('err', err)
-	// 	});
-	// });
+	it('callFooAsync calls foo once', (done) => {
+		sc.callFooAsync(true).then((val) => {
+			// expect(util1.foo.calledOnce).to.be.true;
+			expect(val).to.be.true;
+			done();
+		}).catch((err) => {
+			console.log('wtf are we doing here?');
+			console.log('err', err);
+			done();
+		});
+	});
 
 });

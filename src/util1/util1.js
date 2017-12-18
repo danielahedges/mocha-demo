@@ -4,7 +4,6 @@ export function foo(mustBeTrue) {
 	if (!mustBeTrue) {
 		throw new Error('foo mustBeTrue is falsy');
 	}
-	console.log('returning true');
 	return true;
 }
 
